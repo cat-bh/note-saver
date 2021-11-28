@@ -10,4 +10,11 @@ function addNewNote(note) {
     return db;
 }
 
-module.exports = { addNewNote };
+function deleteNote(noteId) {
+    const newList = db.filter(note => note.id !== noteId);
+    fs.writeFileSync(path.join(__dirname, '../db/db.json'), JSON.stringify(newList));
+    
+    return newList;
+}
+
+module.exports = { addNewNote, deleteNote };
